@@ -1,0 +1,27 @@
+# Project-local ChkTeX config for resume.tex
+#
+# Every suppression below is a false positive for this resume template, not a
+# real defect. Note that ChkTeX applies these BEFORE any command-line flags, so
+# a caller passing -wall re-enables them -- see .vscode/settings.json, which
+# repeats them for the LaTeX Workshop extension.
+#
+#   1  - "Command terminated with space" : fires on every macro that ends a
+#        line (\resumeSubheading, \resumeItemListEnd, ...). This template
+#        deliberately splits macros across lines.
+#   8  - "Wrong length of dash" : flags the hyphen in "June, 2024 - Present"
+#        and in the phone number. Both intentional.
+#   13 - "Intersentence spacing (\@) should perhaps be used" : flags "CGPA: 7.55 / 10".
+#   39 - "Double space found" : flags the "~" separators in the contact header.
+#   46 - "Use \( ... \) instead of $ ... $" : the separators in the project
+#        headings are the template's own convention.
+#   -I0 stops ChkTeX from following \input{glyphtounicode}, which lives in the
+#        TeX distribution rather than this folder, so it cannot resolve it.
+CmdLine
+{
+    -n1
+    -n8
+    -n13
+    -n39
+    -n46
+    -I0
+}

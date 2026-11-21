@@ -1,0 +1,56 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "job",
+  "description": "One job found by an agent on a browser source, dropped into <profile>/data/inbox/ for scan.py to import.",
+  "type": "object",
+  "required": [
+    "source",
+    "company",
+    "job_id",
+    "title",
+    "locations",
+    "url",
+    "description"
+  ],
+  "properties": {
+    "source": {
+      "type": "string",
+      "description": "id from sources.json, e.g. naukri"
+    },
+    "company": {
+      "type": "string",
+      "description": "employer name as shown"
+    },
+    "job_id": {
+      "type": "string",
+      "description": "the site's own id for the posting (from its URL)"
+    },
+    "title": {
+      "type": "string"
+    },
+    "locations": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "url": {
+      "type": "string"
+    },
+    "posted": {
+      "type": "string",
+      "description": "YYYY-MM-DD; convert \"3 days ago\" using today's date; empty if unknown"
+    },
+    "description": {
+      "type": "string",
+      "description": "full description text as shown, no summarising"
+    },
+    "experience": {
+      "type": "string",
+      "description": "experience range as the site shows it, e.g. \"2-5 Yrs\""
+    },
+    "salary": {
+      "type": "string"
+    }
+  }
+}

@@ -1,0 +1,36 @@
+FICTIONAL EXAMPLE CANDIDATE - copy this file to profiles/<your-name>/notes.txt and replace everything.
+Write freely. Headings help but are optional. Your AI agent turns this into bank.json and asks
+you about anything unclear (tasks/build-bank.md, tasks/setup-profile.md).
+
+== About me ==
+Meera Rao, mechanical design engineer, Pune. +91-90000-00000, meera.rao@example.com
+linkedin.com/in/meera-rao-example, portfolio: meera-rao.example.com (CAD renders, FEA reports)
+
+== Target ==
+Field: mechanical design / product design (automotive, rail, industrial equipment)
+Titles I want: Design Engineer, Mechanical Design Engineer, Product Design Engineer, CAE Engineer
+Experience I'd apply for: roles asking 2 to 5 years
+Locations: Pune, Bengaluru. No remote needed. Open to relocating within India.
+Priorities: good work-life balance first, then pay. Like Bosch, Wabtec, Cummins. Avoid pure sales roles.
+
+== Experience ==
+Design Engineer, Kalyani Precision Components (fictional), Pune, Aug 2022 - now
+- own sheet-metal and casting design for brake-system brackets, SolidWorks + GD&T drawings
+- did tolerance stack-ups for a 14-part caliper assembly, cut rework at assembly line (they said rework down ~30%)
+- FEA in ANSYS for bracket redesign, mass down 18% while passing the same load cases
+- DFMEA owner for 2 new product lines, ran reviews with quality + manufacturing
+- release drawings in Teamcenter, ECN process
+- trained 3 interns on drawing standards
+
+Graduate Engineer Trainee, same company, Aug 2021 - Jul 2022
+- rotated through manufacturing, quality and design; made jigs & fixtures for drilling line (5 fixtures)
+
+== Education ==
+B.E. Mechanical Engineering, Savitribai Phule Pune University, 2021, CGPA 8.1
+
+== Skills ==
+SolidWorks, CATIA V5 (basic), AutoCAD, GD&T (ASME Y14.5), tolerance stack-up, ANSYS Mechanical, sheet metal, casting design,
+DFMEA, DFM/DFA, Teamcenter, MATLAB, MS Excel, Six Sigma Green Belt
+
+== Certifications / extra ==
+Six Sigma Green Belt (2023, KPMG fictional), CSWA certified (2020)

@@ -1,0 +1,27 @@
+# Candidate data never goes in the engine repo: every profile is ignored except the
+# fictional example. Keep your own profile in a separate private repo if you want history.
+profiles/*
+!profiles/example/
+profiles/example/data/
+profiles/example/private/
+profiles/example/applications.xlsx
+
+# LaTeX build artifacts
+*.aux
+*.fdb_latexmk
+*.fls
+*.log
+*.out
+*.synctex.gz
+
+# LibreOffice / Word lock files
+.~lock.*#
+~$*
+
+# Python
+__pycache__/
+.venv/
+
+.DS_Store
+profiles/example/resumes/*/try-*/
+profiles/example/previews/

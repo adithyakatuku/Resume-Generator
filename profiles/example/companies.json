@@ -1,0 +1,14 @@
+{
+  "_about": "FICTIONAL EXAMPLE (tasks/setup-profile.md). Employers whose job boards scan.py reads. Feeds verified on 2026-11-21. wlb/pay are rough reputation ratings used only for ranking. resume_policy: per_application | profile | unknown (check on the first application).",
+  "companies": [
+    {"id": "bosch", "name": "Bosch India", "enabled": true, "platform": "smartrecruiters", "board": {"company": "BoschGroup"},
+     "careers_url": "https://careers.smartrecruiters.com/BoschGroup", "status": "api", "wlb": "good", "pay": "good", "work_mode": "onsite",
+     "resume_policy": "unknown", "fit": "Automotive components; Pune and Bengaluru design centres"},
+    {"id": "wabtec", "name": "Wabtec", "enabled": true, "platform": "smartrecruiters", "board": {"company": "Wabtec"},
+     "careers_url": "https://careers.smartrecruiters.com/Wabtec", "status": "api", "wlb": "good", "pay": "average", "work_mode": "onsite",
+     "resume_policy": "unknown", "fit": "Rail equipment; engineering roles in Bengaluru and Hosur"},
+    {"id": "cummins", "name": "Cummins India", "enabled": true, "platform": "other", "board": null,
+     "careers_url": "https://careers.cummins.com", "status": "needs-browser", "wlb": "good", "pay": "good", "work_mode": "onsite",
+     "resume_policy": "unknown", "fit": "Engines and power systems; Pune technical centre. Search it through the browser (sources.json)."}
+  ]
+}

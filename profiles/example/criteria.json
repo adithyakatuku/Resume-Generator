@@ -1,0 +1,64 @@
+{
+  "_about": "FICTIONAL EXAMPLE (tasks/setup-profile.md). Which jobs count as eligible: asked experience range, locations, title words (case-insensitive whole words), posting age, and how many open applications to hold per company.",
+  "experience_years": {
+    "min": 2,
+    "max": 5
+  },
+  "max_posting_age_days": 60,
+  "locations": {
+    "include": [
+      "Pune",
+      "Bengaluru",
+      "Bangalore"
+    ],
+    "accept_remote_india": false,
+    "remote_regions": [
+      "india"
+    ]
+  },
+  "search_terms": [
+    "Design Engineer",
+    "Mechanical Engineer"
+  ],
+  "title_include": [
+    "design engineer",
+    "mechanical engineer",
+    "mechanical design",
+    "product design",
+    "product engineer",
+    "cae",
+    "cad engineer",
+    "mechanical",
+    "structural analysis"
+  ],
+  "title_exclude": [
+    "principal",
+    "lead",
+    "manager",
+    "director",
+    "head",
+    "intern",
+    "internship",
+    "trainee",
+    "sales",
+    "software",
+    "developer",
+    "firmware",
+    "electrical",
+    "contract",
+    "temporary",
+    "senior staff",
+    "asic",
+    "hardware",
+    "maintenance",
+    "electronics",
+    "pcb"
+  ],
+  "description_exclude": [
+    "contract role",
+    "fixed term",
+    "part-time",
+    "part time"
+  ],
+  "max_active_per_company": 1
+}

@@ -1,0 +1,61 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "vocab",
+  "description": "Field-specific matching vocabulary.",
+  "type": "object",
+  "required": [
+    "terms"
+  ],
+  "properties": {
+    "terms": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "have": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "fundamentals": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "near": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "number",
+        "minimum": 0,
+        "maximum": 1
+      }
+    },
+    "phrases": {
+      "type": "object",
+      "additionalProperties": {
+        "type": "string"
+      }
+    },
+    "phrases_ignore": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "covered_by_phrases": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "jd_cut": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    }
+  }
+}

@@ -1,0 +1,7 @@
+{
+  "engine": "latex",
+  "entry": "resume.tex.j2",
+  "max_pages": 1,
+  "description": "One-page, single-column LaTeX resume: small-caps name, ruled section headings. ATS-safe: plain-text contact line, standard section names.",
+  "latex_packages": ["preprint", "titlesec", "enumitem", "fontawesome5", "marvosym", "fancyhdr", "babel-english"]
+}

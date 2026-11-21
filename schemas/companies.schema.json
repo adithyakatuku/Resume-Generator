@@ -1,0 +1,92 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "companies",
+  "description": "Target employers and how to read their job boards.",
+  "type": "object",
+  "required": [
+    "companies"
+  ],
+  "properties": {
+    "companies": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "platform",
+          "careers_url"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "platform": {
+            "enum": [
+              "amazon",
+              "workday",
+              "smartrecruiters",
+              "greenhouse",
+              "lever",
+              "ashby",
+              "custom",
+              "eightfold",
+              "google",
+              "oracle",
+              "icims",
+              "other"
+            ]
+          },
+          "board": {
+            "type": [
+              "object",
+              "null"
+            ]
+          },
+          "careers_url": {
+            "type": "string"
+          },
+          "status": {
+            "type": "string"
+          },
+          "wlb": {
+            "enum": [
+              "good",
+              "mixed",
+              "unknown"
+            ]
+          },
+          "pay": {
+            "enum": [
+              "high",
+              "good",
+              "average",
+              "unknown"
+            ]
+          },
+          "work_mode": {
+            "type": "string"
+          },
+          "resume_policy": {
+            "enum": [
+              "per_application",
+              "profile",
+              "unknown"
+            ]
+          },
+          "max_active": {
+            "type": "integer",
+            "minimum": 1
+          }
+        }
+      }
+    }
+  }
+}

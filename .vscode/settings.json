@@ -1,0 +1,23 @@
+{
+  // LaTeX Workshop invokes ChkTeX with -wall, which re-enables everything
+  // .chktexrc suppresses (later flags win). So the suppressions are repeated
+  // here. See .chktexrc for what each number means.
+  "latex-workshop.chktex.exec.args": [
+    "-wall",
+    "-n22",
+    "-n30",
+    "-e16",
+    "-n1",
+    "-n8",
+    "-n13",
+    "-n39",
+    "-n46",
+    "-I0",
+    "-q",
+    "-f%f:%l:%c:%d:%k:%n:%m\n"
+  ],
+  // lacheck reports false "unmatched \begin{itemize}" errors on this template,
+  // because \resumeItemListStart / \resumeItemListEnd split the environment
+  // across two \newcommand definitions. It is off by default; keep it off.
+  "latex-workshop.linting.lacheck.enabled": false
+}

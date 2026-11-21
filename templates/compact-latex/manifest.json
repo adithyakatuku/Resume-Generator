@@ -1,0 +1,15 @@
+{
+  "engine": "latex",
+  "entry": "resume.tex.j2",
+  "max_pages": 1,
+  "description": "Denser one-page variant of classic-latex (10pt, tighter margins) for longer careers.",
+  "latex_packages": [
+    "preprint",
+    "titlesec",
+    "enumitem",
+    "fontawesome5",
+    "marvosym",
+    "fancyhdr",
+    "babel-english"
+  ]
+}

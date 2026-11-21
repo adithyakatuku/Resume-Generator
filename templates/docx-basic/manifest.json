@@ -1,0 +1,7 @@
+{
+  "engine": "script",
+  "entry": "render.py",
+  "ext": "docx",
+  "max_pages": null,
+  "description": "Plain single-column Word (.docx) resume for portals or companies that ask for Word. Uses python-docx; no template file needed."
+}

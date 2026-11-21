@@ -1,0 +1,19 @@
+{
+  "job": null,
+  "role": "General mechanical design resume (example)",
+  "rationale": "FICTIONAL EXAMPLE of a plan (tasks/write-plan.md). Leads with CAD, GD&T and FEA results; the unverified rework figure (kp-stackup) is left out until the candidate confirms it.",
+  "summary_years": "5",
+  "summary": "Mechanical design engineer with 5 years in automotive brake components: SolidWorks design of sheet-metal and cast parts, GD&T drawings, tolerance stack-ups and ANSYS FEA, from DFMEA through engineering release in Teamcenter.",
+  "skills": [
+    ["CAD", ["SolidWorks", "AutoCAD", "Teamcenter", "CATIA V5"]],
+    ["Design & analysis", ["GD&T", "Tolerance stack-up", "ANSYS Mechanical", "FEA", "Sheet metal design", "Casting design"]],
+    ["Quality & process", ["DFMEA", "DFM/DFA", "Six Sigma"]]
+  ],
+  "experience": [
+    {"id": "kalyani", "bullets": ["kp-brackets", "kp-fea", "kp-dfmea", "kp-interns"]},
+    {"id": "kalyani-get", "bullets": ["get-rotation"]}
+  ],
+  "education": ["edu-be"],
+  "sections": ["summary", "skills", "experience", "education", "certifications"],
+  "certifications": ["cert-ssgb", "cert-cswa"]
+}

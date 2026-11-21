@@ -1,0 +1,116 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "plan",
+  "description": "One tailored resume: which bank facts, in what order, plus summary and skills line.",
+  "type": "object",
+  "required": [
+    "summary",
+    "skills",
+    "experience"
+  ],
+  "properties": {
+    "job": {
+      "type": [
+        "string",
+        "null"
+      ],
+      "description": "tracker key company:job_id, null for a general resume"
+    },
+    "role": {
+      "type": "string"
+    },
+    "url": {
+      "type": "string"
+    },
+    "rationale": {
+      "type": "string"
+    },
+    "template": {
+      "type": "string"
+    },
+    "summary_years": {
+      "type": "string"
+    },
+    "summary": {
+      "type": "string"
+    },
+    "sections": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "project_label": {
+      "type": [
+        "string",
+        "null"
+      ]
+    },
+    "skills": {
+      "type": "array",
+      "items": {
+        "type": "array",
+        "prefixItems": [
+          {
+            "type": "string"
+          },
+          {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          }
+        ],
+        "minItems": 2,
+        "maxItems": 2
+      }
+    },
+    "experience": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id"
+        ],
+        "properties": {
+          "id": {
+            "type": "string"
+          },
+          "bullets": {
+            "type": "array"
+          },
+          "projects": {
+            "type": "array",
+            "items": {
+              "type": "object",
+              "required": [
+                "id",
+                "bullets"
+              ],
+              "properties": {
+                "id": {
+                  "type": "string"
+                },
+                "label": {
+                  "type": "string"
+                },
+                "bullets": {
+                  "type": "array"
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "education": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "personal_projects": {
+      "type": "array"
+    }
+  }
+}

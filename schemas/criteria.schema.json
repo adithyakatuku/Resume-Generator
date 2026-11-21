@@ -1,0 +1,87 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "criteria",
+  "description": "Which jobs count as eligible.",
+  "type": "object",
+  "required": [
+    "experience_years",
+    "locations",
+    "title_include",
+    "title_exclude"
+  ],
+  "properties": {
+    "experience_years": {
+      "type": "object",
+      "required": [
+        "min",
+        "max"
+      ],
+      "properties": {
+        "min": {
+          "type": "number"
+        },
+        "max": {
+          "type": "number"
+        }
+      }
+    },
+    "max_posting_age_days": {
+      "type": "integer"
+    },
+    "locations": {
+      "type": "object",
+      "required": [
+        "include"
+      ],
+      "properties": {
+        "include": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        },
+        "accept_remote_india": {
+          "type": "boolean"
+        },
+        "remote_regions": {
+          "type": "array",
+          "items": {
+            "type": "string"
+          }
+        }
+      }
+    },
+    "search_terms": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "title_include": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      },
+      "minItems": 1
+    },
+    "title_exclude": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "description_exclude": {
+      "type": "array",
+      "items": {
+        "type": "string"
+      }
+    },
+    "max_active_per_company": {
+      "type": "integer",
+      "minimum": 1
+    },
+    "company_overrides": {
+      "type": "object"
+    }
+  }
+}

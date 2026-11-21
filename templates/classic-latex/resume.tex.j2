@@ -1,0 +1,149 @@
+%-------------------------
+% classic-latex: one-page, single-column resume.
+% Body is filled from the resume document by engine/render.py:
+%   see engine/render.py for the template syntax (VAR blocks and %%-statements).
+%------------------------
+\documentclass[letterpaper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+\pdfgentounicode=1
+\newcommand{\resumeItem}[1]{\small\item{{#1 \vspace{-2pt}}}}
+\newcommand{\resumeSubheading}[4]{
+  \item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-4pt}
+}
+\newcommand{\resumeProjectSubheading}[1]{
+    \vspace{4pt}
+    \item[]
+    \small{\textbf{#1}}
+    \vspace{-4pt}
+}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeSkillItem}[2]{
+  \resumeItem{
+    \textbf{#1}{:\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+\newcommand{\resumeSubItem}[2]{\resumeSkillItem{#1}{#2}\vspace{-4pt}}
+\begin{document}
+\begin{center}
+    {\Huge \scshape \VAR{contact.name|tex}} \\ \vspace{6pt}
+%% set parts = []
+%% if contact.phone
+%%   set _ = parts.append(contact.phone|tex)
+%% endif
+%% if contact.email
+%%   set _ = parts.append('\\href{mailto:' ~ contact.email ~ '}{\\underline{' ~ (contact.email|tex) ~ '}}')
+%% endif
+%% for l in contact.links
+%%   set _ = parts.append('\\href{' ~ l.url ~ '}{\\underline{' ~ (l.label|tex) ~ '}}')
+%% endfor
+%% for p in parts
+    \VAR{'\\small ' if loop.first else ''}\VAR{p}\VAR{'' if loop.last else ' \\textbar{}'}
+%% endfor
+\end{center}
+%% for s in sections
+%% if s.type == 'summary'
+\section{\VAR{s.title}}
+\VAR{s.text|tex}
+%% elif s.type == 'skills'
+\section{\VAR{s.title}}
+\resumeItemListStart[label=\textbullet]
+%% for g in s.groups
+  \resumeSubItem{\VAR{g.name|tex}}{ \VAR{g['items']|join(', ')|tex} }
+%% endfor
+\resumeItemListEnd
+%% elif s.type == 'experience'
+\section{\VAR{s.title}}
+\resumeSubHeadingListStart
+%% for e in s.entries
+  \resumeSubheading{\VAR{e.title|tex}}{\VAR{e.location|tex}}{\VAR{e.company|tex}}{\VAR{e.dates|tex}}
+%% if e.bullets
+    \resumeItemListStart[label=\textbullet]
+%% for b in e.bullets
+      \resumeItem{\VAR{b|tex}}
+%% endfor
+    \resumeItemListEnd
+%% endif
+%% for p in e.projects
+    \resumeProjectSubheading{\VAR{p.heading|tex}}
+    \resumeItemListStart[label=\textbullet]
+%% for b in p.bullets
+      \resumeItem{\VAR{b|tex}}
+%% endfor
+    \resumeItemListEnd
+%% endfor
+%% endfor
+\resumeSubHeadingListEnd
+%% elif s.type == 'education'
+\section{\VAR{s.title}}
+\resumeSubHeadingListStart
+%% for ed in s.entries
+  \resumeSubheading{\VAR{ed.degree|tex}}{\VAR{ed.when|tex}}{\VAR{ed.school|tex}}{\VAR{ed.grade|tex}}
+%% endfor
+\resumeSubHeadingListEnd
+%% elif s.type == 'projects'
+\section{\VAR{s.title}}
+\resumeSubHeadingListStart
+%% for p in s.entries
+  \resumeProjectHeading{\textbf{\VAR{p.name|tex}} $|$ \emph{\VAR{p.tech|join(', ')|tex}}}{}
+    \resumeItemListStart[label=\textbullet]
+%% for b in p.bullets
+      \resumeItem{\VAR{b|tex}}
+%% endfor
+    \resumeItemListEnd
+%% endfor
+\resumeSubHeadingListEnd
+%% elif s.type == 'list'
+\section{\VAR{s.title|tex}}
+\resumeItemListStart[label=\textbullet]
+%% for i in s['items']
+  \resumeItem{\VAR{i|tex}}
+%% endfor
+\resumeItemListEnd
+%% endif
+%% endfor
+\end{document}

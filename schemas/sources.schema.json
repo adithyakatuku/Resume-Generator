@@ -1,0 +1,60 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "title": "sources",
+  "description": "Where to look for jobs. Add, remove or disable entries freely.",
+  "type": "object",
+  "required": [
+    "sources"
+  ],
+  "properties": {
+    "sources": {
+      "type": "array",
+      "items": {
+        "type": "object",
+        "required": [
+          "id",
+          "name",
+          "type",
+          "enabled"
+        ],
+        "properties": {
+          "id": {
+            "type": "string",
+            "pattern": "^[a-z0-9-]+$"
+          },
+          "name": {
+            "type": "string"
+          },
+          "type": {
+            "enum": [
+              "feeds",
+              "browser"
+            ],
+            "description": "feeds = company boards in companies.json read by scan.py; browser = a site the agent searches in your browser (tasks/browse-search.md)"
+          },
+          "enabled": {
+            "type": "boolean"
+          },
+          "search_url": {
+            "type": "string",
+            "description": "URL pattern with {title}, {location}, {title_slug}, {location_slug}, {years} placeholders"
+          },
+          "login": {
+            "enum": [
+              "none",
+              "recommended",
+              "required"
+            ]
+          },
+          "max_results": {
+            "type": "integer",
+            "minimum": 1
+          },
+          "notes": {
+            "type": "string"
+          }
+        }
+      }
+    }
+  }
+}

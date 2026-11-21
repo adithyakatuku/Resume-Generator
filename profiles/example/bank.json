@@ -1,0 +1,63 @@
+{
+  "_about": "FICTIONAL EXAMPLE built from notes.txt by following tasks/build-bank.md. Every fact a resume may use lives here; resumes only select and lightly reword. verified=false means the candidate has not confirmed it yet and tailor.py will refuse to use it.",
+  "contact": {
+    "name": "Meera Rao",
+    "phone": "+91-90000-00000",
+    "email": "meera.rao@example.com",
+    "location": "Pune, India",
+    "links": [
+      {"url": "https://www.linkedin.com/in/meera-rao-example/"},
+      {"url": "https://meera-rao.example.com", "label": "meera-rao.example.com (portfolio)"}
+    ]
+  },
+  "career_start": "2021-08",
+  "education": [
+    {"id": "edu-be", "degree": "B.E. in Mechanical Engineering", "school": "Savitribai Phule Pune University",
+     "year": 2021, "grade": "CGPA 8.1 / 10", "verified": true}
+  ],
+  "experience": [
+    {
+      "id": "kalyani",
+      "company": "Kalyani Precision Components",
+      "title": "Design Engineer",
+      "location": "Pune",
+      "start": "2022-08",
+      "end": null,
+      "bullets": [
+        {"id": "kp-brackets", "text": "Own sheet-metal and casting design of brake-system brackets in SolidWorks, releasing GD&T drawings (ASME Y14.5) and engineering changes through Teamcenter",
+         "skills": ["SolidWorks", "GD&T", "Sheet metal design", "Casting design", "Teamcenter"], "sources": ["notes"], "verified": true},
+        {"id": "kp-stackup", "text": "Ran tolerance stack-up analysis on a 14-part brake caliper assembly and re-toleranced critical features, reducing rework at the assembly line by about 30%",
+         "skills": ["Tolerance stack-up", "GD&T"], "sources": ["notes"], "verified": false,
+         "check": "Notes say rework fell '~30%' as reported by the line. Is 'about 30%' accurate enough to print, and is it OK to cite?"},
+        {"id": "kp-fea", "text": "Redesigned a mounting bracket using ANSYS Mechanical FEA, cutting mass by 18% while passing the same load cases",
+         "skills": ["ANSYS Mechanical", "FEA"], "sources": ["notes"], "verified": true},
+        {"id": "kp-dfmea", "text": "Owned DFMEA for 2 new product lines, running design reviews with quality and manufacturing teams",
+         "skills": ["DFMEA", "DFM/DFA"], "sources": ["notes"], "verified": true},
+        {"id": "kp-interns", "text": "Trained 3 interns on drawing standards and GD&T", "skills": ["GD&T"], "sources": ["notes"], "verified": true}
+      ]
+    },
+    {
+      "id": "kalyani-get",
+      "company": "Kalyani Precision Components",
+      "title": "Graduate Engineer Trainee",
+      "location": "Pune",
+      "start": "2021-08",
+      "end": "2022-07",
+      "bullets": [
+        {"id": "get-rotation", "text": "Rotated through manufacturing, quality and design; designed 5 drilling jigs and fixtures for the machining line",
+         "skills": ["Jigs and fixtures", "SolidWorks"], "sources": ["notes"], "verified": true}
+      ]
+    }
+  ],
+  "certifications": [
+    {"id": "cert-ssgb", "text": "Six Sigma Green Belt (2023)", "verified": true},
+    {"id": "cert-cswa", "text": "Certified SolidWorks Associate (CSWA, 2020)", "verified": true}
+  ],
+  "skills": {
+    "CAD": ["SolidWorks", "CATIA V5", "AutoCAD", "Teamcenter"],
+    "Design & analysis": ["GD&T", "Tolerance stack-up", "ANSYS Mechanical", "FEA", "Sheet metal design", "Casting design", "Jigs and fixtures"],
+    "Quality & process": ["DFMEA", "DFM/DFA", "Six Sigma"],
+    "Tools": ["MATLAB", "MS Excel"]
+  },
+  "skills_check": "CATIA V5 is marked 'basic' in the notes: keep it on resumes, or only where a job asks for CATIA?"
+}

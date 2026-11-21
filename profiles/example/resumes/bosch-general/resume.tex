@@ -1,0 +1,110 @@
+%-------------------------
+% classic-latex: one-page, single-column resume.
+% Body is filled from the resume document by engine/render.py:
+%   see engine/render.py for the template syntax (VAR blocks and %%-statements).
+%------------------------
+\documentclass[letterpaper,11pt]{article}
+\usepackage{latexsym}
+\usepackage[empty]{fullpage}
+\usepackage{titlesec}
+\usepackage{marvosym}
+\usepackage[usenames,dvipsnames]{color}
+\usepackage{verbatim}
+\usepackage{enumitem}
+\usepackage[hidelinks]{hyperref}
+\usepackage{fancyhdr}
+\usepackage[english]{babel}
+\usepackage{tabularx}
+\usepackage{fontawesome5}
+\usepackage{multicol}
+\setlength{\multicolsep}{-3.0pt}
+\setlength{\columnsep}{-1pt}
+\input{glyphtounicode}
+\pagestyle{fancy}
+\fancyhf{}
+\fancyfoot{}
+\renewcommand{\headrulewidth}{0pt}
+\renewcommand{\footrulewidth}{0pt}
+\addtolength{\oddsidemargin}{-0.6in}
+\addtolength{\evensidemargin}{-0.5in}
+\addtolength{\textwidth}{1.19in}
+\addtolength{\topmargin}{-.7in}
+\addtolength{\textheight}{1.4in}
+\urlstyle{same}
+\raggedbottom
+\raggedright
+\setlength{\tabcolsep}{0in}
+\titleformat{\section}{
+  \vspace{-6pt}\scshape\raggedright\large\bfseries
+}{}{0em}{}[\color{black}\titlerule \vspace{-5pt}]
+\pdfgentounicode=1
+\newcommand{\resumeItem}[1]{\small\item{{#1 \vspace{-2pt}}}}
+\newcommand{\resumeSubheading}[4]{
+  \item
+    \begin{tabular*}{1.0\textwidth}[t]{l@{\extracolsep{\fill}}r}
+      \textbf{#1} & \textbf{\small #2} \\
+      \textit{\small#3} & \textit{\small #4} \\
+    \end{tabular*}\vspace{-6pt}
+}
+\newcommand{\resumeProjectHeading}[2]{
+    \item
+    \begin{tabular*}{1.001\textwidth}{l@{\extracolsep{\fill}}r}
+      \small#1 & \textbf{\small #2}\\
+    \end{tabular*}\vspace{-4pt}
+}
+\newcommand{\resumeProjectSubheading}[1]{
+    \vspace{4pt}
+    \item[]
+    \small{\textbf{#1}}
+    \vspace{-4pt}
+}
+\newcommand{\resumeItemListStart}{\begin{itemize}}
+\newcommand{\resumeItemListEnd}{\end{itemize}\vspace{-5pt}}
+\newcommand{\resumeSubHeadingListStart}{\begin{itemize}[leftmargin=0.0in, label={}]}
+\newcommand{\resumeSubHeadingListEnd}{\end{itemize}}
+\newcommand{\resumeSkillItem}[2]{
+  \resumeItem{
+    \textbf{#1}{:\hspace{0.5mm}#2 \vspace{-0.5mm}}
+  }
+}
+\newcommand{\resumeSubItem}[2]{\resumeSkillItem{#1}{#2}\vspace{-4pt}}
+\begin{document}
+\begin{center}
+    {\Huge \scshape Meera Rao} \\ \vspace{6pt}
+    \small +91-90000-00000 \textbar{}
+    \href{mailto:meera.rao@example.com}{\underline{meera.rao@example.com}} \textbar{}
+    \href{https://www.linkedin.com/in/meera-rao-example/}{\underline{linkedin.com/in/meera-rao-example}} \textbar{}
+    \href{https://meera-rao.example.com}{\underline{meera-rao.example.com (portfolio)}}
+\end{center}
+\section{Summary}
+Mechanical design engineer with 5 years in automotive brake components: SolidWorks design of sheet-metal and cast parts, GD\&T drawings, tolerance stack-ups and ANSYS FEA, from DFMEA through engineering release in Teamcenter.
+\section{Skills}
+\resumeItemListStart[label=\textbullet]
+  \resumeSubItem{CAD}{ SolidWorks, AutoCAD, Teamcenter, CATIA V5 }
+  \resumeSubItem{Design \& analysis}{ GD\&T, Tolerance stack-up, ANSYS Mechanical, FEA, Sheet metal design, Casting design }
+  \resumeSubItem{Quality \& process}{ DFMEA, DFM/DFA, Six Sigma }
+\resumeItemListEnd
+\section{Experience}
+\resumeSubHeadingListStart
+  \resumeSubheading{Design Engineer}{Pune}{Kalyani Precision Components}{Aug 2022 -- Present}
+    \resumeItemListStart[label=\textbullet]
+      \resumeItem{Own sheet-metal and casting design of brake-system brackets in SolidWorks, releasing GD\&T drawings (ASME Y14.5) and engineering changes through Teamcenter}
+      \resumeItem{Redesigned a mounting bracket using ANSYS Mechanical FEA, cutting mass by 18\% while passing the same load cases}
+      \resumeItem{Owned DFMEA for 2 new product lines, running design reviews with quality and manufacturing teams}
+      \resumeItem{Trained 3 interns on drawing standards and GD\&T}
+    \resumeItemListEnd
+  \resumeSubheading{Graduate Engineer Trainee}{Pune}{Kalyani Precision Components}{Aug 2021 -- July 2022}
+    \resumeItemListStart[label=\textbullet]
+      \resumeItem{Rotated through manufacturing, quality and design; designed 5 drilling jigs and fixtures for the machining line}
+    \resumeItemListEnd
+\resumeSubHeadingListEnd
+\section{Education}
+\resumeSubHeadingListStart
+  \resumeSubheading{B.E.\ in Mechanical Engineering}{Graduated: 2021}{Savitribai Phule Pune University}{CGPA 8.1 / 10}
+\resumeSubHeadingListEnd
+\section{Certifications}
+\resumeItemListStart[label=\textbullet]
+  \resumeItem{Six Sigma Green Belt (2023)}
+  \resumeItem{Certified SolidWorks Associate (CSWA, 2020)}
+\resumeItemListEnd
+\end{document}

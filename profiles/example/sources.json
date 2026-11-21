@@ -1,0 +1,42 @@
+{
+  "_about": "Where to look for jobs. type feeds = company boards listed in companies.json, read automatically by engine/scan.py. type browser = a site your AI agent searches in your own logged-in browser (tasks/browse-search.md); jobs it finds go to data/inbox/ and scan.py imports them through the same filters. Add, remove or set enabled=false freely.",
+  "sources": [
+    {
+      "id": "company-boards",
+      "name": "Company job boards (companies.json)",
+      "type": "feeds",
+      "enabled": true,
+      "notes": "Fastest and most reliable source: no browser needed."
+    },
+    {
+      "id": "naukri",
+      "name": "Naukri",
+      "type": "browser",
+      "enabled": true,
+      "login": "recommended",
+      "search_url": "https://www.naukri.com/{title_slug}-jobs-in-{location_slug}?experience={years}",
+      "max_results": 40,
+      "notes": "India's largest job site. Logged in, results include recruiter activity and the 'apply on company site' links."
+    },
+    {
+      "id": "linkedin",
+      "name": "LinkedIn Jobs",
+      "type": "browser",
+      "enabled": false,
+      "login": "required",
+      "search_url": "https://www.linkedin.com/jobs/search/?keywords={title}&location={location}&f_TPR=r2592000",
+      "max_results": 25,
+      "notes": "LinkedIn's terms forbid automated scraping and accounts can be restricted. If you enable it, keep to a few searches at a human pace in your own session. Never use Easy Apply through the agent."
+    },
+    {
+      "id": "indeed",
+      "name": "Indeed India",
+      "type": "browser",
+      "enabled": false,
+      "login": "none",
+      "search_url": "https://in.indeed.com/jobs?q={title}&l={location}&fromage=30",
+      "max_results": 30,
+      "notes": "Often shows CAPTCHAs to automated browsing; the agent stops and asks you when one appears."
+    }
+  ]
+}

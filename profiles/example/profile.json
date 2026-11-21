@@ -1,0 +1,7 @@
+{
+  "name": "Meera Rao",
+  "field": "Mechanical design engineering (automotive / industrial)",
+  "default_template": "classic-latex",
+  "project_heading_prefix": null,
+  "output_name": "{name}_Resume"
+}
