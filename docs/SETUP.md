@@ -94,7 +94,14 @@ Needed only for searching sites like Naukri or LinkedIn and for filling applicat
 Then, in that browser, **log in to the job sites yourself** (Naukri, LinkedIn...). The agent uses
 your logged-in session; it will never type your passwords, and it stops before any Submit button.
 
-## 7. Start
+## 7. Check everything
+
+Ask your agent: *"Run the doctor."* (or paste `.venv/bin/python engine/doctor.py`; on Windows
+`.venv\Scripts\python engine\doctor.py`). It lists what's installed, and for anything missing it
+says exactly what to install or run. Fix those, then run it again until it says
+**"Everything required is installed."** Lines marked `note` are optional.
+
+## 8. Start
 
 Tell your agent, in your own words:
 
@@ -136,12 +143,14 @@ into `profiles/<your-name>/`.
 
 ## If something goes wrong
 
-Paste the error into your agent and ask *"What does this mean and how do I fix it?"* Common ones:
+First, run the doctor (step 7): it catches most missing installs. Otherwise paste the error into
+your agent and ask *"What does this mean and how do I fix it?"* Common ones:
 
 | Message | Fix |
 |---|---|
 | `command not found: python3` / `git` | Step 2 didn't finish; reinstall, then reopen the terminal |
 | `pdflatex: command not found` | Step 3; reopen the terminal after installing |
 | `File 'titlesec.sty' not found` (or another `.sty`) | Mac: `tlmgr --usermode install <name>`; Windows: let MiKTeX install it |
-| `No profile yet` | Ask the agent to set up your profile (step 7) |
+| `No profile yet` | Ask the agent to set up your profile (step 8) |
+| `Missing Python package ...` | `.venv/bin/pip install -r requirements.txt` (Windows: `.venv\Scripts\pip ...`), and run commands with `.venv/bin/python` |
 | `Could not write applications.xlsx` | Close the file in Excel, then retry |

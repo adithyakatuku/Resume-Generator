@@ -31,6 +31,27 @@ def _take_flag():
 
 
 _take_flag()
+
+# requirement name for import names that differ (for the hint below)
+_PIP_NAMES = {'pdfminer': 'pdfminer.six', 'docx': 'python-docx', 'PIL': 'pillow', 'fitz': 'pymupdf'}
+
+
+def _friendly_missing_module(exc_type, exc, tb):
+    """A missing Python package prints a fix instead of a traceback."""
+    if issubclass(exc_type, ModuleNotFoundError) and exc.name and exc.name.split('.')[0] in (
+            'openpyxl', 'pdfminer', 'jinja2', 'docx', 'jsonschema', 'PIL', 'fitz'):
+        top = exc.name.split('.')[0]
+        pip = r'.venv\Scripts\pip' if os.name == 'nt' else '.venv/bin/pip'
+        py = r'.venv\Scripts\python' if os.name == 'nt' else '.venv/bin/python'
+        sys.stderr.write(f'Missing Python package "{_PIP_NAMES.get(top, top)}".\n'
+                         f'Install the project packages:  {pip} install -r requirements.txt\n'
+                         f'and run commands with {py} (not plain python). To check everything: {py} engine/doctor.py\n')
+        return
+    sys.__excepthook__(exc_type, exc, tb)
+
+
+sys.excepthook = _friendly_missing_module
+
 _cached = None
 
 

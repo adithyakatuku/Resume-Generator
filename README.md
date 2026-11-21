@@ -47,6 +47,7 @@ Then ask your agent to follow `tasks/setup-profile.md` and `tasks/build-bank.md`
 
 Commands (your agent runs these; Windows uses `.venv\Scripts\python`):
 ```sh
+.venv/bin/python engine/doctor.py                         # is everything installed? (fixes for anything missing)
 .venv/bin/python engine/check.py all                       # validate your profile
 .venv/bin/python engine/scan.py                            # fetch + filter jobs, update the tracker
 .venv/bin/python engine/pick.py                            # what to apply to next

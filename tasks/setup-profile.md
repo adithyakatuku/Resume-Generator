@@ -5,6 +5,9 @@
 The engine ships no profession presets; you build them for this person.
 
 ## Start
+Run `.venv/bin/python engine/doctor.py` first and help the person fix anything marked `NEEDED`
+(and the `AGENT` line, if they want browser job sites).
+
 Create the folder by copying the example: `cp -r profiles/example profiles/<name>` (`<name>`: lowercase,
 no spaces). **Everything in the copy is fictional (Meera Rao) and must be replaced**: files still
 marked `FICTIONAL EXAMPLE` make `check.py` fail, and `tailor.py` / `apply.py` refuse to use them.

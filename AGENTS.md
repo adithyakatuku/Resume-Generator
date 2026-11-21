@@ -35,11 +35,26 @@ and every agent output is checked by `engine/check.py`.
 
 ```sh
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt   # once
+.venv/bin/python engine/doctor.py                                     # what's installed / missing, with fixes
 .venv/bin/python engine/<script>.py ... --profile <name>              # --profile optional if only one profile
 ```
+(Windows: `.venv\Scripts\python`.)
+
+**Prerequisites are your job to check, not the person's to know.** Run `engine/doctor.py` when you
+start setting someone up, after they install anything, and whenever a command fails with an
+install-type error. Walk them through each `NEEDED` item in plain words (`docs/SETUP.md` has the
+details per OS) and run the doctor again until it reports everything required. Lines marked
+`AGENT` are about you: the doctor cannot see your tools.
+
+**Browser control** (searching job sites, filling forms) lives inside you, not on the system.
+Before any browser task, confirm you actually have browser tools in this session. If you don't,
+say so and explain how to connect one (Claude Code: the "Claude in Chrome" extension + `/chrome`;
+other agents: Playwright MCP or the agent's own browser feature; `docs/SETUP.md` step 6). Never
+silently skip an enabled browser source.
 
 | Script | What it does |
 |---|---|
+| `doctor.py` | Installed prerequisites (Python packages, Git, LaTeX + each format's packages, XeLaTeX) and what the profile's choices need |
 | `check.py bank\|setup\|plan PATH\|all` | Validate profile files against `schemas/` and the fact rules |
 | `workrecord_digest.py` | Summarise the candidate's git work into `data/workrecord_digest.txt` |
 | `scan.py [ids] [--dry-run -v] [--refresh] [--import-only]` | Read company feeds + import browser-found jobs from `data/inbox/`, filter by `criteria.json`, update the tracker |

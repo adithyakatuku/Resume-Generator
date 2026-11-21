@@ -17,11 +17,10 @@ import re
 import sys
 import unicodedata
 
-from pdfminer.high_level import extract_text
-
 HERE = os.path.dirname(os.path.abspath(__file__))
 sys.path.insert(0, HERE)
-import candidate  # noqa: E402
+import candidate  # noqa: E402  (first: turns a missing package into a readable message)
+from pdfminer.high_level import extract_text  # noqa: E402
 from match import vocab  # noqa: E402
 from tailor import output_stem  # noqa: E402
 

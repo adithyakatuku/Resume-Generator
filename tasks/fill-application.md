@@ -12,6 +12,9 @@ The candidate always clicks Submit.
   path to the clipboard and prints the answer sheet (works without browser control too).
 
 ## With browser control
+First confirm you have browser tools in this session; without them, use the `apply.py` route
+above and explain how to connect a browser (`docs/SETUP.md` step 6).
+
 1. Open the posting in a new tab and click Apply. If a sign-in page appears, stop: the candidate
    signs in (you never type passwords or codes, never create accounts).
 2. Read every section before changing anything. Prefilled profile data is often stale: compare

@@ -27,13 +27,13 @@ import sys
 sys.path.insert(0, os.path.dirname(os.path.abspath(__file__)))
 from datetime import date, datetime, timedelta
 
-from openpyxl import Workbook, load_workbook
-from openpyxl.formatting.rule import FormulaRule
-from openpyxl.styles import Alignment, Font, PatternFill
-from openpyxl.utils import get_column_letter
-from openpyxl.worksheet.datavalidation import DataValidation
 
 import candidate  # noqa: E402  (engine/candidate.py: the active profile folder)
+from openpyxl import Workbook, load_workbook  # noqa: E402
+from openpyxl.formatting.rule import FormulaRule  # noqa: E402
+from openpyxl.styles import Alignment, Font, PatternFill  # noqa: E402
+from openpyxl.utils import get_column_letter  # noqa: E402
+from openpyxl.worksheet.datavalidation import DataValidation  # noqa: E402
 
 
 def xlsx_path():
