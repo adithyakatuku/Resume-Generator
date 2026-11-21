@@ -55,6 +55,26 @@ def facts(bank):
             yield sec, b
 
 
+def check_not_example():
+    if candidate.in_example_profile():
+        return
+    names = ['bank.json', 'criteria.json', 'companies.json', 'vocab.json', 'profile.json', 'sources.json',
+             'workrecord.json', os.path.join('private', 'applicant.json')]
+    for n in names:
+        if os.path.exists(candidate.path(n)):
+            with open(candidate.path(n), encoding='utf-8') as f:
+                try:
+                    data = json.load(f)
+                except ValueError:
+                    continue
+            if candidate.is_example_data(data):
+                err(f'{n}: still the fictional example; replace it with this candidate\'s own '
+                    '(tasks/setup-profile.md, tasks/build-bank.md)')
+    notes = candidate.path('notes.txt')
+    if os.path.exists(notes) and open(notes, encoding='utf-8').read().startswith('FICTIONAL EXAMPLE'):
+        err('notes.txt: still the fictional example; write your own notes')
+
+
 def check_bank():
     bank = candidate.load_json('bank.json')
     schema_check('bank', bank, 'bank.json')
@@ -156,6 +176,7 @@ def main():
     if not args or args[0] not in ('bank', 'setup', 'plan', 'all'):
         raise SystemExit(__doc__)
     what = args[0]
+    check_not_example()
     if what in ('bank', 'all'):
         check_bank()
     if what in ('setup', 'all'):

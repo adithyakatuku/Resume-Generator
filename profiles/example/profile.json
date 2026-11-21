@@ -1,4 +1,5 @@
 {
+  "_about": "FICTIONAL EXAMPLE (tasks/setup-profile.md). Small per-candidate settings: display name, field, default resume format, project heading prefix, output file name.",
   "name": "Meera Rao",
   "field": "Mechanical design engineering (automotive / industrial)",
   "default_template": "classic-latex",

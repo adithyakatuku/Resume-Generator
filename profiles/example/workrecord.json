@@ -1,10 +1,20 @@
 {
+  "_about": "FICTIONAL EXAMPLE. Optional evidence of your work for the agent to mine (tasks/mine-workrecord.md): git repos with the author names/emails that are you, documents, links.",
   "repos": [],
   "documents": [
-    {"path": "~/Documents/work/bracket-fea-report.pdf", "about": "FEA summary for the bracket redesign (example)"},
-    {"path": "~/Documents/work/dfmea-line-b.xlsx", "about": "DFMEA I owned for product line B (example)"}
+    {
+      "path": "~/Documents/work/bracket-fea-report.pdf",
+      "about": "FEA summary for the bracket redesign (example)"
+    },
+    {
+      "path": "~/Documents/work/dfmea-line-b.xlsx",
+      "about": "DFMEA I owned for product line B (example)"
+    }
   ],
   "links": [
-    {"url": "https://meera-rao.example.com", "about": "Portfolio with CAD renders (example)"}
+    {
+      "url": "https://meera-rao.example.com",
+      "about": "Portfolio with CAD renders (example)"
+    }
   ]
 }

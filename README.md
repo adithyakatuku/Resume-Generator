@@ -40,7 +40,7 @@ sources.json ──> agent browses ─┴─> filter (criteria.json) ─> match 
 ```sh
 git clone <this repo> && cd Resume-Generator
 python3 -m venv .venv && .venv/bin/pip install -r requirements.txt     # Windows: .venv\Scripts\pip
-cp -r profiles/example profiles/<your-name>                            # then edit notes.txt
+cp -r profiles/example profiles/<your-name>    # fictional example: your agent replaces all of it
 ```
 Then ask your agent to follow `tasks/setup-profile.md` and `tasks/build-bank.md`
 (or just say *"set me up"*; agents read [AGENTS.md](AGENTS.md)).
@@ -70,7 +70,7 @@ Copy `profiles/example/` (a fictional mechanical engineer) and replace its conte
 | `vocab.json` | Your field's tools/methods/phrases, for matching and ATS checks | Agent |
 | `companies.json` | Employers and their job-board ids, work-life-balance/pay ratings | Agent (verifies each feed) |
 | `sources.json` | Where to search: company feeds, Naukri, LinkedIn, Indeed, any site — add/remove/disable | You |
-| `private/applicant.json` | Standard form answers (notice period, salary, address...) | You |
+| `private/applicant.json` | Standard form answers (notice period, salary, address...) | You (the agent asks) |
 | `resumes/`, `data/`, `applications.xlsx` | Outputs | Engine |
 
 ## Job sources
@@ -130,8 +130,13 @@ per profile (e.g. Amazon), which matters if you raise that limit.
 ## Privacy
 
 `profiles/*` is git-ignored except the fictional `profiles/example/`; your data never goes into
-this repository. Keep your profile in its own **private** repo if you want history or sync
-across machines. Agents follow the rules in [AGENTS.md](AGENTS.md): no invented facts, no typing
+this repository. A new profile starts as a copy of the example, and the tools refuse to use
+example data in a real profile (`check.py` lists any file not yet replaced).
+
+To keep history or sync across computers, make your profile its own **private** repository
+(`tasks/setup-profile.md` step 8; `profile.gitignore` is its starting `.gitignore`). Decide
+whether `private/` (pay, address, form answers) goes in it: fine for a repository only you can
+access, but leave it out if you might ever share the repository or give apps access to it. Agents follow the rules in [AGENTS.md](AGENTS.md): no invented facts, no typing
 passwords, never pressing Submit.
 
 ## Limits

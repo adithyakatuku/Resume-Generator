@@ -4,6 +4,12 @@
 `profile.json`, `criteria.json`, `vocab.json` and a starter `companies.json`.
 The engine ships no profession presets; you build them for this person.
 
+## Start
+Create the folder by copying the example: `cp -r profiles/example profiles/<name>` (`<name>`: lowercase,
+no spaces). **Everything in the copy is fictional (Meera Rao) and must be replaced**: files still
+marked `FICTIONAL EXAMPLE` make `check.py` fail, and `tailor.py` / `apply.py` refuse to use them.
+Delete `resumes/bosch-general/` from the copy.
+
 ## Inputs
 - `profiles/<name>/notes.txt` (copied from `profiles/example/notes.txt`), especially the
   "Target" section: field, target job titles, seniority, locations, remote preference,
@@ -48,5 +54,23 @@ The engine ships no profession presets; you build them for this person.
 6. Run `.venv/bin/python engine/scan.py --dry-run -v --profile <name>` and look at what is kept
    and rejected. Adjust `title_include/exclude` and locations until the kept titles are right.
 
+7. **private/applicant.json** — the standard answers application forms ask for. Ask the
+   candidate (one message, numbered) and write their answers; drop the `FICTIONAL EXAMPLE`
+   `_about` text. Typical questions, adjusted to their country and field: current city and
+   address; notice period; current and expected pay (and whether fixed/variable or total);
+   earliest start date; willing to relocate (where); preferred work mode; work authorisation /
+   sponsorship; employers they worked for before (for "worked here before?" questions); reason for
+   changing jobs; shift / on-call / travel willingness; voluntary disclosures (or "prefer not to
+   say"). Keys are free-form: `apply.py` shows every key, labelled from its name. Never invent an
+   answer; leave it empty and ask later.
+8. **Backup repo (optional, recommended)** — the profile is never part of the Resume-Generator
+   repo. To keep history and sync between computers, make it its own repository:
+   `cd profiles/<name> && cp profile.gitignore .gitignore && git init && git add -A && git commit -m "Profile"`.
+   Ask the candidate whether `private/` (pay, address) should be backed up too: if yes, delete the
+   `private/` line from `.gitignore` before committing. Suggest their GitHub no-reply address as
+   the commit email (`git config user.email <id>+<login>@users.noreply.github.com`). Only with their
+   go-ahead, create a **private** GitHub repo for it and push; never a public one.
+
 ## Done when
-`check.py setup` reports 0 errors and a dry-run scan keeps plausible titles for this person.
+`check.py setup` reports 0 errors (no example data left), a dry-run scan keeps plausible titles for
+this person, and `private/applicant.json` holds their own answers.

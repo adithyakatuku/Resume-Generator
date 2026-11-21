@@ -70,6 +70,23 @@ def load_json(name, default=None):
         return json.load(f)
 
 
+def is_example_data(obj):
+    """True for files copied from profiles/example that still hold its fictional content."""
+    return isinstance(obj, dict) and str(obj.get('_about', '')).startswith('FICTIONAL EXAMPLE')
+
+
+def in_example_profile():
+    return os.path.basename(profile_dir()) == 'example'
+
+
+def refuse_example_data(obj, name):
+    """Stop a real profile from using the example's fictional facts or form answers."""
+    if is_example_data(obj) and not in_example_profile():
+        raise SystemExit(f'{name} in profile "{os.path.basename(profile_dir())}" is still the fictional '
+                         'example (Meera Rao). Replace it with your own: ask your agent to run '
+                         'tasks/setup-profile.md and tasks/build-bank.md.')
+
+
 def settings():
     """profile.json: small per-candidate settings (name, field, default template...)."""
     return load_json('profile.json', default={})

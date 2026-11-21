@@ -80,6 +80,7 @@ def numbers(s):
 
 def load_bank():
     bank = candidate.load_json('bank.json')
+    candidate.refuse_example_data(bank, 'bank.json')
     facts = {}
     for e in bank.get('experience', []):
         for b in e.get('bullets', []):  # role-level, spanning projects

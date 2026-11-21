@@ -40,6 +40,7 @@ def load_applicant():
                          'there and fill it in.')
     with open(APPLICANT, encoding='utf-8') as f:
         a = json.load(f)
+    candidate.refuse_example_data(a, 'private/applicant.json')
     empty = [k for k, v in a.items() if not k.startswith('_') and v in ('', None)]
     if empty:
         print(f'note: still blank in applicant.json: {", ".join(empty)}\n')

@@ -101,6 +101,7 @@ Tell your agent, in your own words:
 > "I'm new here. Set me up: copy the example profile for me, then help me write my notes."
 
 It will create `profiles/<your-name>/`, ask about your experience, target roles and locations,
+plus the standard questions job applications ask (notice period, expected salary, relocation...),
 and follow the steps in `tasks/`. You then review and confirm every fact it drafts.
 
 ---
@@ -115,10 +116,23 @@ and follow the steps in `tasks/`. You then review and confirm every fact it draf
 
 ## Your data stays yours
 
-Everything about you lives in `profiles/<your-name>/`, which Git is told to ignore, so it is
-never uploaded with the project. Salary, address and other form answers live in
-`profiles/<your-name>/private/`. To back up or sync your profile between computers, ask your
-agent to set up a **private** repository just for that folder.
+Everything about you lives in `profiles/<your-name>/`. The project is told to ignore that folder,
+so it is never uploaded with the project, even if you share it.
+
+Your profile starts as a copy of a **fictional example** (Meera Rao). Your agent replaces all of
+it with your own details; until it has, the tools refuse to build resumes or fill forms with it.
+
+The most sensitive part is `profiles/<your-name>/private/applicant.json`: your salary, notice
+period, address and other answers for application forms. Your agent asks you for these once.
+
+**Backing up and using another computer:** ask your agent to *"back up my profile to a private
+GitHub repository"*. It will ask whether to include `private/` too:
+- **Include it** if nobody else can access that repository: everything syncs.
+- **Leave it out** if you might ever share the repository (a mentor reviewing your resume, an app
+  with access): then copy `private/` to your other computer yourself.
+
+On another computer: download the project (step 4), then ask your agent to download your profile
+into `profiles/<your-name>/`.
 
 ## If something goes wrong
 

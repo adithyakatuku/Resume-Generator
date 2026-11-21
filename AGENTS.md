@@ -25,7 +25,10 @@ and every agent output is checked by `engine/check.py`.
 5. **Privacy.** Personal data lives only in `profiles/<name>/` (git-ignored). Never copy it
    into engine files, issues, logs or third-party services. `private/` holds salary and
    addresses: read it to fill forms, never print it in shared outputs.
-6. **Check your work.** After editing a profile file run `engine/check.py` and fix every
+6. **Never use the example's data for a real person.** A new profile is a copy of the fictional
+   `profiles/example` (Meera Rao); replace every file. `check.py` errors on leftovers, and
+   `tailor.py` / `apply.py` refuse them.
+7. **Check your work.** After editing a profile file run `engine/check.py` and fix every
    ERROR before telling the candidate you are done.
 
 ## Running commands
