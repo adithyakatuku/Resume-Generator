@@ -5,7 +5,7 @@ The candidate always clicks Submit.
 
 ## Before you start
 - The job is `Tailored` in the tracker and its resume exists (`apply.py` lists ready jobs).
-- `private/applicant.json` exists (copy `profiles/example/applicant.example.json`); it holds
+- `private/applicant.json` exists (copy `profiles/example/private/applicant.json` and replace the answers); it holds
   standard answers (notice period, salary, work authorisation, address...) and an `extra` map of
   questions answered before.
 - `.venv/bin/python engine/apply.py <key> --profile <name>` opens the posting, copies the resume

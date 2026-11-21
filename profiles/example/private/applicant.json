@@ -1,0 +1,22 @@
+{
+  "_about": "FICTIONAL EXAMPLE. Standard answers for job application forms, used by engine/apply.py and by agents filling forms (tasks/fill-application.md). Name, email, phone, links, education and total experience come from bank.json, so they are not repeated here. Add any field you like: apply.py shows every key, labelled from its name. 'extra' collects questions answered on earlier forms so the next form is faster. This folder is the most sensitive part of a profile (salary, address): see README.md 'Privacy' before sharing or uploading it.",
+  "current_location": "Pune, Maharashtra, India",
+  "current_address": "Flat 12, Example Residency, Baner, Pune 411045, India",
+  "notice_period": "30 days, negotiable",
+  "current_ctc": "9.5 LPA (8.5 LPA fixed)",
+  "expected_ctc": "13 LPA",
+  "earliest_start_date": "Within 30 days of accepting an offer",
+  "willing_to_relocate": "Yes, within India",
+  "preferred_work_mode": "Office or hybrid",
+  "work_authorization": "Indian citizen, no sponsorship needed",
+  "previously_employed_by": [],
+  "how_did_you_hear": "Company careers site",
+  "voluntary_disclosures": "Prefer not to say",
+  "extra": {
+    "Reason for change": "After four years designing brake components, I want broader product ownership in a larger engineering organisation.",
+    "Current role / target level": "Design Engineer; targeting Design Engineer / Senior Design Engineer",
+    "Willing to do shifts / on-call": "No shift work; occasional plant visits are fine",
+    "Bachelor's degree in Engineering or related field": "Yes",
+    "Government employee in the last 3 years": "No, never"
+  }
+}

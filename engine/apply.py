@@ -36,7 +36,7 @@ MAX_AGE = 60
 def load_applicant():
     APPLICANT = candidate.path('private', 'applicant.json')
     if not os.path.exists(APPLICANT):
-        raise SystemExit(f'Missing {os.path.relpath(APPLICANT)}. Copy profiles/example/applicant.example.json '
+        raise SystemExit(f'Missing {os.path.relpath(APPLICANT)}. Copy profiles/example/private/applicant.json '
                          'there and fill it in.')
     with open(APPLICANT, encoding='utf-8') as f:
         a = json.load(f)
@@ -66,7 +66,10 @@ def answers(bank, a, company=''):
     c = bank['contact']
     sheet = [('Name', c['name']), ('Email', c.get('email')), ('Phone', c.get('phone'))]
     import tailor
-    sheet += [(l['label'].split('/')[0].split('.')[0].title() or 'Link', l['url']) for l in tailor.contact_links(c)]
+    def link_name(url):
+        u = url.lower()
+        return 'LinkedIn' if 'linkedin.' in u else 'GitHub' if 'github.' in u else 'Portfolio / website'
+    sheet += [(link_name(l['url']), l['url']) for l in tailor.contact_links(c)]
     if bank.get('career_start'):
         sheet.append(('Total experience', experience_text(bank)))
     if bank.get('experience'):

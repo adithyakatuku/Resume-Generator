@@ -3,7 +3,6 @@
 profiles/*
 !profiles/example/
 profiles/example/data/
-profiles/example/private/
 profiles/example/applications.xlsx
 
 # LaTeX build artifacts
