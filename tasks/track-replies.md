@@ -3,14 +3,13 @@
 When the candidate reports news about an application, update `applications.xlsx` through the
 engine (so dates and the Summary stay right), not by hand-editing other columns.
 
-```python
-import sys; sys.path.insert(0, 'engine'); import tracker
-rows = tracker.load()
-rows['<company>:<job id>']['Status'] = 'Rejected'   # Responded | Interview | Offer | Rejected | Skipped
-rows['<company>:<job id>']['Notes'] = 'Rejected 2026-11-21 (no reason given).'
-tracker.save(rows)   # stamps Last Update, rebuilds Summary and Applied by Date
+```sh
+.venv/bin/python engine/track.py set <company>:<job id> Rejected --note "Rejected 2026-11-21, no reason given" --profile <name>
+.venv/bin/python engine/track.py list --status Applied,Responded,Interview --profile <name>
+.venv/bin/python engine/track.py show <company>:<job id> --profile <name>    # row + job description
 ```
-(run with `RESUME_PROFILE=<name>` set, or from a script that passes `--profile`)
+`set` stamps Last Update (and Applied On), appends the note, and rebuilds the Summary and Applied
+by Date sheets. Through MCP: the `tracker_set`, `tracker_list` and `tracker_show` tools.
 
 Status meanings: `Responded` = any positive contact (recruiter call, test, email);
 `Interview`; `Offer`; `Rejected` = any rejection; `Skipped` = decided not to apply (kept so the

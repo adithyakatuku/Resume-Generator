@@ -63,7 +63,9 @@ silently skip an enabled browser source.
 | `tailor.py resumes/<folder>/plan.json [--template NAME] [--open]` | Render a resume from a plan through a template (`--template` tries a format into `try-<name>/` without editing the plan) |
 | `preview_templates.py [names]` / `--mine [--plan P]` | Gallery: example resume through each built-in template into `templates/<name>/preview.*`; `--mine`: the candidate's resume through every format into `<profile>/previews/` |
 | `ats_check.py resumes/<folder> [job keys]` | How the resume parses + which job terms it covers |
-| `apply.py [key] [--done key]` | List ready jobs / walk through one application / mark applied |
+| `apply.py [key] [--done key] [--sheet]` | List ready jobs / walk through one application / mark applied (`--sheet`: print the answer sheet only, no browser or prompts) |
+| `track.py list [--status A,B]` / `show KEY` / `set KEY STATUS [--note N]` | Read the tracker, or record a status (stamps dates, rebuilds the summary) |
+| `mcp_server.py` | The same commands as MCP tools for chat apps (`docs/MCP.md`); `test_mcp_server.py` checks it |
 
 ## Tasks
 

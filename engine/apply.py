@@ -19,6 +19,7 @@ import hashlib
 import json
 import os
 import re
+import shutil
 import subprocess
 import sys
 from datetime import date
@@ -136,7 +137,7 @@ def mark_applied(rows, key, note=''):
     print(f'{key} marked Applied ({date.today():%d %b %Y}).')
 
 
-def walkthrough(rows, key):
+def walkthrough(rows, key, sheet_only=False):
     r = rows.get(key)
     if not r:
         raise SystemExit(f'{key} is not in the tracker.')
@@ -145,17 +146,28 @@ def walkthrough(rows, key):
     bank = candidate.load_json('bank.json')
     a = load_applicant()
     rel, policy = resume_for(key)
+    recorded = r.get('Resume')
+    if recorded and recorded != rel and os.path.exists(candidate.path(recorded)):
+        rel = recorded  # the tracker records which resume belongs to this job (e.g. what was sent)
     pdf = candidate.path(rel)
     if not os.path.exists(pdf):
-        kind = 'per-job' if policy == 'per_application' else 'company-wide'
-        raise SystemExit(f'No {kind} resume at {rel} ({r["Company"]} resume_policy={policy}); build it with tailor.py first.')
+        kind = 'company-wide' if rel.split('/')[1].endswith('-general') else 'per-job'
+        raise SystemExit(f'No {kind} resume at {rel} ({r["Company"]} resume_policy={policy}); '
+                         'build it with tailor.py first (tasks/write-plan.md).')
     if r.get('Resume') != rel:
         r['Resume'] = rel  # record what is actually being sent
 
     print(f'{r["Role"]}  [{r["Company"]}]  posted {r.get("Posted")}, {age(r)} days ago\n{r["URL"]}\n')
-    subprocess.run(['open', r['URL']], check=False)
-    subprocess.run(['pbcopy'], input=pdf.encode(), check=False)
-    print(f'Resume path copied to clipboard (upload dialog: Cmd+Shift+G, paste, Enter):\n  {pdf}')
+    if sheet_only:
+        print(f'Resume to upload:\n  {pdf}')
+    else:
+        import tailor
+        tailor.open_file(r['URL'])  # opens the posting in the default browser
+        if shutil.which('pbcopy'):
+            subprocess.run(['pbcopy'], input=pdf.encode(), check=False)
+            print(f'Resume path copied to clipboard (upload dialog: Cmd+Shift+G, paste, Enter):\n  {pdf}')
+        else:
+            print(f'Resume to upload:\n  {pdf}')
     if policy == 'profile':
         print(f'  {r["Company"]} keeps one resume per profile: this upload is what all your {r["Company"]} applications show.')
     elif policy == 'unknown':
@@ -166,6 +178,9 @@ def walkthrough(rows, key):
     for k, v in answers(bank, a, r['Company']):
         print(f'  {k + ":":<26} {v if v not in ("", None) else "(not set)"}')
     print()
+    if sheet_only:
+        print('After submitting: engine/track.py set ' + key + ' Applied  (or apply.py --done ' + key + ')')
+        return
     try:
         done = input('Did you submit the application? [y/N] ').strip().lower() == 'y'
     except EOFError:
@@ -181,6 +196,8 @@ def main():
     ap = argparse.ArgumentParser(description=__doc__, formatter_class=argparse.RawDescriptionHelpFormatter)
     ap.add_argument('key', nargs='?', help='tracker key, e.g. amazon:10604005')
     ap.add_argument('--done', action='store_true', help='just mark KEY as applied today')
+    ap.add_argument('--sheet', action='store_true',
+                    help='only print the posting, resume path and answers (no browser, clipboard or prompt)')
     a = ap.parse_args()
     rows = tracker.load()
     if not a.key:
@@ -190,7 +207,7 @@ def main():
             raise SystemExit(f'{a.key} is not in the tracker.')
         mark_applied(rows, a.key)
     else:
-        walkthrough(rows, a.key)
+        walkthrough(rows, a.key, sheet_only=a.sheet)
 
 
 if __name__ == '__main__':

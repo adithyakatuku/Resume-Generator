@@ -10,6 +10,9 @@ Works for any profession (software, data, mechanical, civil, design, ...), any A
 **New here and not technical?** Start with [docs/SETUP.md](docs/SETUP.md): it explains every
 install step in plain language. Then tell your agent *"Set me up."*
 
+**Prefer a chat app?** Connect the built-in MCP server to Claude Desktop, Cursor, ChatGPT desktop
+or another MCP app and do everything by chatting: [docs/MCP.md](docs/MCP.md).
+
 ## How it works
 
 ```
@@ -54,6 +57,7 @@ Commands (your agent runs these; Windows uses `.venv\Scripts\python`):
 .venv/bin/python engine/tailor.py resumes/<folder>/plan.json   # build a resume
 .venv/bin/python engine/ats_check.py resumes/<folder>       # parse + keyword check
 .venv/bin/python engine/apply.py <key>                     # open the job, resume path, answer sheet
+.venv/bin/python engine/track.py set <key> Interview       # record a status (list / show / set)
 ```
 Add `--profile <name>` when more than one profile exists.
 

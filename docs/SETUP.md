@@ -79,8 +79,10 @@ Any of these works; pick one you have access to:
   `Resume-Generator` folder in it. These tools read `AGENTS.md` on their own; if one doesn't, start
   by saying *"Read AGENTS.md first."*
 
-Agents that can't run commands themselves (e.g. a chat website) can still help with writing,
-but you'd have to paste commands yourself; a coding agent is much easier.
+**Rather not use a terminal app?** Use a desktop chat app instead: **Claude Desktop**, Cursor,
+ChatGPT desktop or another app that supports MCP. Connect it to this project once by following
+[MCP.md](MCP.md); after that you chat as usual and the app runs everything. A chat *website*
+can't reach your computer, so it can only help with writing.
 
 ## 6. (Optional) Let the agent use your browser
 
