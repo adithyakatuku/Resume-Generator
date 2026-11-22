@@ -49,7 +49,12 @@ Delete `resumes/bosch-general/` from the copy.
      `{"appliedFacets":{},"limit":1,"offset":0,"searchText":"<city>"}` to
      `https://<tenant>.wd<N>.myworkdayjobs.com/wday/cxs/<tenant>/<site>/jobs` → `workday, board: {tenant, host, site}`
      (a 303 to a maintenance page means Workday is down; retry later, the address may still be right).
-   - Anything else (custom sites, Taleo, iCIMS, Oracle): add it with `platform` set to that name and
+   - Oracle Recruiting Cloud (job links on `<host>.oraclecloud.com/hcmUI/CandidateExperience/en/sites/<site>/...`):
+     `https://<host>/hcmRestApi/resources/latest/recruitingCEJobRequisitions?onlyData=true&finder=findReqs;siteNumber=<site>,limit=1,facetsList=LOCATIONS`
+     returns jobs and a location facet → `oracle, board: {host, site, location_id}` (location_id: the country's id from the facet)
+   - Phenom (`careers.<company>.com`, images from cdn.phenompeople.com) → `phenom, board: {base, country: ["<Country>"]}`.
+     Check the search results' `applyUrl` first: when it points to Workday, use the Workday route instead (it searches by city).
+   - Anything else (custom sites, Taleo, iCIMS): add it with `platform` set to that name and
      `status: "needs-browser"`; the scanner skips it.
    Set `wlb` and `pay` (good/mixed/unknown, high/good/average/unknown) only from reputation you can
    justify; use `unknown` otherwise. `resume_policy: "unknown"` until a real application shows it.

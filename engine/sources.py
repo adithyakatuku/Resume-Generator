@@ -247,5 +247,113 @@ class Ashby:
         return stub
 
 
+# ---------------------------------------------------------------- Oracle Recruiting Cloud
+class OracleCloud:
+    """Oracle Recruiting Cloud (Oracle itself, many hospitals and banks). board: host (e.g.
+    eeho.fa.us2.oraclecloud.com), site (siteNumber, e.g. CX_45001), optional location_id (a
+    country or city id from the site's location facet), optional job_url ({id} placeholder)."""
+    PAGE = 25
+
+    def _api(self, b, resource, finder, expand):
+        return (f"https://{b['host']}/hcmRestApi/resources/latest/{resource}?onlyData=true"
+                f"&expand={expand}&finder={finder}")
+
+    def list_jobs(self, company, criteria):
+        b = company['board']
+        terms = list(criteria.get('search_terms') or []) + b.get('extra_search_terms', []) or ['']
+        seen = set()
+        for term in terms:
+            offset, total = 0, None
+            while total is None or offset < total:
+                parts = [f"siteNumber={b['site']}", f'limit={self.PAGE}', f'offset={offset}', 'sortBy=POSTING_DATES_DESC']
+                if term:
+                    parts.append('keyword=' + urllib.parse.quote(f'"{term}"'))
+                if b.get('location_id'):
+                    parts.append(f"locationId={b['location_id']}")
+                d = http_json(self._api(b, 'recruitingCEJobRequisitions', 'findReqs;' + ','.join(parts),
+                                        'requisitionList.secondaryLocations'))
+                item = (d.get('items') or [{}])[0]
+                if total is None:
+                    total = min(item.get('TotalJobsCount') or 0, 500)
+                reqs = item.get('requisitionList') or []
+                if not reqs:
+                    break
+                for r in reqs:
+                    if r['Id'] in seen:
+                        continue
+                    seen.add(r['Id'])
+                    locs = [r.get('PrimaryLocation') or ''] + [s.get('Name', '') for s in r.get('secondaryLocations') or []]
+                    yield {'job_id': str(r['Id']), 'title': r['Title'].strip(), 'locations': [l for l in locs if l],
+                           'posted': (r.get('PostedDate') or '')[:10]}
+                offset += len(reqs)
+
+    def details(self, company, stub):
+        b = company['board']
+        d = http_json(self._api(b, 'recruitingCEJobRequisitionDetails',
+                                f'ById;Id="{stub["job_id"]}",siteNumber={b["site"]}', 'all'))
+        r = (d.get('items') or [{}])[0]
+        desc = '\n'.join(html_to_text(r.get(k)) for k in
+                         ('ExternalDescriptionStr', 'ExternalResponsibilitiesStr', 'ExternalQualificationsStr') if r.get(k))
+        locs = [r.get('PrimaryLocation') or ''] + [s.get('Name', '') for s in r.get('secondaryLocations') or []]
+        url = (b.get('job_url') or f"https://{b['host']}/hcmUI/CandidateExperience/en/sites/{b['site']}/job/{{id}}").format(id=stub['job_id'])
+        return dict(stub, locations=[l for l in locs if l] or stub['locations'], url=url,
+                    posted=(r.get('ExternalPostedStartDate') or stub.get('posted') or '')[:10],
+                    description=desc, exp_text=desc)
+
+
+# ---------------------------------------------------------------- Phenom
+class Phenom:
+    """Phenom People career sites (careers.<company>.com) through their /widgets endpoint.
+    board: base (https://careers.cisco.com), lang (en_global), optional country (list, e.g.
+    ["India"]) to narrow the search."""
+    PAGE = 50
+
+    def _post(self, b, body):
+        return http_json(b['base'].rstrip('/') + '/widgets',
+                         dict({'lang': b.get('lang', 'en_global'), 'deviceType': 'desktop', 'country': 'global',
+                               'siteType': 'external'}, **body))
+
+    def list_jobs(self, company, criteria):
+        b = company['board']
+        terms = list(criteria.get('search_terms') or []) + b.get('extra_search_terms', []) or ['']
+        seen = set()
+        for term in terms:
+            offset, total = 0, None
+            while total is None or offset < total:
+                body = {'pageName': 'search-results', 'ddoKey': 'refineSearch', 'sortBy': 'Most recent',
+                        'from': offset, 'size': self.PAGE, 'jobs': True, 'counts': False, 'keywords': term,
+                        'global': True, 'all_fields': ['country', 'state', 'city'], 'clearAll': False,
+                        'jdsource': 'facets', 'selected_fields': {'country': b['country']} if b.get('country') else {}}
+                d = (self._post(b, body).get('refineSearch') or {})
+                if total is None:
+                    total = min(d.get('totalHits') or d.get('hits') or 0, 500)
+                jobs = (d.get('data') or {}).get('jobs') or []
+                if not jobs:
+                    break
+                for j in jobs:
+                    jid = str(j.get('jobSeqNo') or j.get('jobId'))
+                    if jid in seen:
+                        continue
+                    seen.add(jid)
+                    locs = j.get('multi_location') or [j.get('location') or ', '.join(x for x in (j.get('city'), j.get('state'), j.get('country')) if x)]
+                    yield {'job_id': str(j.get('reqId') or j.get('jobId') or jid), 'title': (j.get('title') or '').strip(),
+                           'locations': [l for l in locs if l], 'posted': (j.get('postedDate') or '')[:10],
+                           'url': j.get('applyUrl') or '', '_seq': jid}
+                offset += len(jobs)
+
+    def details(self, company, stub):
+        b = company['board']
+        d = self._post(b, {'pageName': 'job', 'ddoKey': 'jobDetail', 'jobId': stub['_seq']})
+        j = ((d.get('jobDetail') or {}).get('data') or {}).get('job') or {}
+        desc = html_to_text(j.get('description') or j.get('descriptionTeaser') or '')
+        url = f"{b['base'].rstrip('/')}/global/en/job/{stub['_seq']}"
+        # the detail's multi_location holds dicts ({locationName, cityState, country...}); the search's holds strings
+        locs = [l if isinstance(l, str) else (l.get('locationName') or ', '.join(x for x in (l.get('cityState'), l.get('country')) if x))
+                for l in j.get('multi_location') or []]
+        return dict(stub, url=url, posted=(j.get('postedDate') or stub.get('posted') or '')[:10],
+                    locations=[l for l in locs if l] or stub['locations'], description=desc, exp_text=desc)
+
+
 FETCHERS = {'amazon': Amazon(), 'workday': Workday(), 'smartrecruiters': SmartRecruiters(),
-            'greenhouse': Greenhouse(), 'lever': Lever(), 'ashby': Ashby()}
+            'greenhouse': Greenhouse(), 'lever': Lever(), 'ashby': Ashby(),
+            'oracle': OracleCloud(), 'phenom': Phenom()}

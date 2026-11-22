@@ -124,7 +124,8 @@ def check_setup():
     cos = candidate.load_json('companies.json')
     schema_check('companies', cos, 'companies.json')
     needs = {'amazon': ['loc_query', 'country'], 'workday': ['tenant', 'host', 'site'], 'smartrecruiters': ['company'],
-             'greenhouse': ['token'], 'lever': ['token'], 'ashby': ['token']}
+             'greenhouse': ['token'], 'lever': ['token'], 'ashby': ['token'],
+             'oracle': ['host', 'site'], 'phenom': ['base']}
     ids = set()
     for c in cos.get('companies', []):
         if c['id'] in ids:

@@ -82,7 +82,7 @@ Copy `profiles/example/` (a fictional mechanical engineer) and replace its conte
 
 `sources.json` lists where to look; edit it freely.
 - **Feeds** (`type: feeds`): company job boards in `companies.json` read directly — Workday,
-  Greenhouse, Lever, Ashby, SmartRecruiters and Amazon. Fast, reliable, no browser needed.
+  Greenhouse, Lever, Ashby, SmartRecruiters, Oracle Recruiting Cloud, Phenom and Amazon. Fast, reliable, no browser needed.
 - **Browser sites** (`type: browser`): Naukri, LinkedIn, Indeed, a company's own careers site —
   anything you can open in a browser. Your agent searches them in *your* logged-in browser at a
   human pace (`tasks/browse-search.md`) and drops what it finds into `data/inbox/`; the scanner

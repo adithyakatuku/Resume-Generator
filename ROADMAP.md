@@ -45,7 +45,7 @@ Where this project goes next, and why. Lessons from real use shaped the order:
 ## Done
 - Candidate-, profession- and agent-agnostic engine; profiles kept out of the repository.
 - Verified fact bank with plain-language wording and fact checks on every resume.
-- Company feeds (Workday, Greenhouse, Lever, Ashby, SmartRecruiters, Amazon) and browser sources.
+- Company feeds (Workday, Greenhouse, Lever, Ashby, SmartRecruiters, Oracle Recruiting Cloud, Phenom, Amazon) and browser sources.
 - One tailored application per company; Excel tracker with a live summary.
 - Resume formats as templates with previews; XeLaTeX support; format walkthrough.
 - `track.py` to record statuses from the command line; `apply.py --sheet` for non-interactive use.
